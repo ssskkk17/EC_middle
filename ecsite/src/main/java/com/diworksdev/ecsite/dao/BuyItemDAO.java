@@ -8,13 +8,13 @@ import com.diworksdev.ecsite.dto.BuyItemDTO;
 import com.diworksdev.ecsite.util.DBConnector;
 
 public class BuyItemDAO {
+	private DBConnector dbConnector = new DBConnector();
+	private Connection connection = dbConnector.getConnection();
+	private BuyItemDTO buyItemDTO = new BuyItemDTO();
 	
 	public BuyItemDTO getBuyItemInfo() {
-		DBConnector dbConnector = new DBConnector();
-		Connection connection = dbConnector.getConnection();
-		BuyItemDTO buyItemDTO = new BuyItemDTO();
-		
 		String sql = "select id, item_name, item_price from item_info_transaction";
+		
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			ResultSet resultSet = preparedStatement.executeQuery();
